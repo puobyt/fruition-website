@@ -16,25 +16,102 @@ const ContactSection = () => {
     message: ""
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    console.log("=== FORM SUBMITTED ===");
+    console.log("Form data:", formData);
     e.preventDefault();
-    // Handle form submission
-    toast({
-      title: "Sample Request Submitted!",
-      description: "Our team will contact you within 24 hours.",
-    });
     
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      phone: "",
-      productInterest: "",
-      message: ""
-    });
+    // Validation - check required fields
+    if (!formData.name || !formData.email || !formData.company || !formData.productInterest) {
+      console.log("Validation failed - missing required fields");
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    console.log("Validation passed, starting submission...");
+    setIsSubmitting(true);
+
+    try {
+      // Show loading state
+      toast({
+        title: "Sending...",
+        description: "Please wait while we submit your request.",
+      });
+
+      console.log("Making fetch request to:", 'http://localhost:5000/api/contact');
+      console.log("Request body:", {
+        name: formData.name,
+        email: formData.email,
+        company: formData.company,
+        phone: formData.phone,
+        message: `Product Interest: ${formData.productInterest}\n\nMessage: ${formData.message}`,
+      });
+
+      // Make API call to your backend
+      const response = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          phone: formData.phone,
+          message: `Product Interest: ${formData.productInterest}\n\nMessage: ${formData.message}`,
+        }),
+      });
+
+      console.log("Response received:", response.status, response.statusText);
+
+      const result = await response.json();
+      console.log("Response data:", result);
+
+      if (response.ok && result.success) {
+        // Success
+        console.log("Success! Email sent.");
+        toast({
+          title: "Sample Request Submitted!",
+          description: "Our team will contact you within 24 hours.",
+        });
+        
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          phone: "",
+          productInterest: "",
+          message: ""
+        });
+      } else {
+        // Server error
+        console.log("Server error:", result);
+        toast({
+          title: "Submission Failed",
+          description: result.message || "Please try again or contact us directly.",
+          variant: "destructive"
+        });
+      }
+    } catch (error) {
+      // Network error
+      console.error('Contact form error:', error);
+      toast({
+        title: "Connection Error",
+        description: "Unable to submit request. Please check your connection and try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+      console.log("Form submission complete, isSubmitting set to false");
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -146,6 +223,7 @@ const ContactSection = () => {
                       onChange={(e) => handleInputChange("name", e.target.value)}
                       placeholder="Your full name"
                       required
+                      disabled={isSubmitting}
                       className="w-full"
                     />
                   </div>
@@ -160,6 +238,7 @@ const ContactSection = () => {
                       onChange={(e) => handleInputChange("email", e.target.value)}
                       placeholder="your.email@company.com"
                       required
+                      disabled={isSubmitting}
                       className="w-full"
                     />
                   </div>
@@ -175,6 +254,7 @@ const ContactSection = () => {
                       onChange={(e) => handleInputChange("company", e.target.value)}
                       placeholder="Your company name"
                       required
+                      disabled={isSubmitting}
                       className="w-full"
                     />
                   </div>
@@ -188,6 +268,7 @@ const ContactSection = () => {
                       value={formData.phone}
                       onChange={(e) => handleInputChange("phone", e.target.value)}
                       placeholder="+1 (555) 123-4567"
+                      disabled={isSubmitting}
                       className="w-full"
                     />
                   </div>
@@ -197,7 +278,11 @@ const ContactSection = () => {
                   <label className="block text-sm font-medium text-foreground mb-2">
                     Product Interest *
                   </label>
-                  <Select value={formData.productInterest} onValueChange={(value) => handleInputChange("productInterest", value)}>
+                  <Select 
+                    value={formData.productInterest} 
+                    onValueChange={(value) => handleInputChange("productInterest", value)}
+                    disabled={isSubmitting}
+                  >
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select product category" />
                     </SelectTrigger>
@@ -220,17 +305,27 @@ const ContactSection = () => {
                     onChange={(e) => handleInputChange("message", e.target.value)}
                     placeholder="Please describe your specific requirements, quantities, and application details..."
                     rows={4}
+                    disabled={isSubmitting}
                     className="w-full"
                   />
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button type="submit" className="btn-primary flex-1">
-                    Send Sample Request
+                  <Button 
+                    type="submit" 
+                    className="btn-primary flex-1" 
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Sending..." : "Send Sample Request"}
                     <Send className="w-5 h-5 ml-2" />
                   </Button>
                   
-                  <Button type="button" variant="outline" className="flex-1">
+                  <Button 
+                    type="button" 
+                    variant="outline" 
+                    className="flex-1"
+                    disabled={isSubmitting}
+                  >
                     Schedule Call
                     <Phone className="w-5 h-5 ml-2" />
                   </Button>
