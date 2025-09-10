@@ -20,13 +20,13 @@ const ContactSection = () => {
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    console.log("=== FORM SUBMITTED ===");
-    console.log("Form data:", formData);
+    
+    
     e.preventDefault();
     
     // Validation - check required fields
     if (!formData.name || !formData.email || !formData.company || !formData.productInterest) {
-      console.log("Validation failed - missing required fields");
+      
       toast({
         title: "Missing Information",
         description: "Please fill in all required fields.",
@@ -35,7 +35,7 @@ const ContactSection = () => {
       return;
     }
 
-    console.log("Validation passed, starting submission...");
+    
     setIsSubmitting(true);
 
     try {
@@ -45,7 +45,7 @@ const ContactSection = () => {
         description: "Please wait while we submit your request.",
       });
 
-      console.log("Making fetch request to:", 'http://localhost:5000/api/contact');
+      
       console.log("Request body:", {
         name: formData.name,
         email: formData.email,
@@ -69,14 +69,14 @@ const ContactSection = () => {
         }),
       });
 
-      console.log("Response received:", response.status, response.statusText);
+      
 
       const result = await response.json();
-      console.log("Response data:", result);
+      
 
       if (response.ok && result.success) {
         // Success
-        console.log("Success! Email sent.");
+        
         toast({
           title: "Sample Request Submitted!",
           description: "Our team will contact you within 24 hours.",
@@ -93,7 +93,7 @@ const ContactSection = () => {
         });
       } else {
         // Server error
-        console.log("Server error:", result);
+        
         toast({
           title: "Submission Failed",
           description: result.message || "Please try again or contact us directly.",
@@ -110,7 +110,7 @@ const ContactSection = () => {
       });
     } finally {
       setIsSubmitting(false);
-      console.log("Form submission complete, isSubmitting set to false");
+      
     }
   };
 
