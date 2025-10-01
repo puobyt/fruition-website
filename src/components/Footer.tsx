@@ -64,7 +64,7 @@ const Footer = () => {
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin className="w-4 h-4 text-accent mt-0.5" />
-                <span className="text-sm">Plot 45, Industrial Area<br />Bangalore, Karnataka 560058, India</span>
+                <span className="text-sm">PLOT NO. C13, C14, SIPCOT INDUSTRIAL AREA, <br />OLLAIPATTI VILLAGE, TALUK, Uthangarai, Tamil Nadu 635304</span>
               </div>
             </div>
           </div>
