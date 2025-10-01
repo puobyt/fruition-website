@@ -134,7 +134,7 @@ const ContactSection = () => {
     {
       icon: MapPin,
       title: "Address",
-      details: ["Plot 45, Industrial Area", "Bangalore, Karnataka 560058, India"],
+      details: [" PLOT NO. C13, C14, SIPCOT INDUSTRIAL AREA, OLLAIPATTI VILLAGE, TALUK, Uthangarai, Tamil Nadu 635304"],
       color: "from-accent to-accent-muted"
     },
     {
