@@ -1,4 +1,4 @@
-import { ArrowRight, Beaker, Droplets, Palette, Sparkles } from "lucide-react";
+import { ArrowRight, Beaker, Droplets, Palette, Sparkles, Utensils } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import paprikaExtract from "@/assets/paprika-extract.jpg";
 import garlicOil from "@/assets/garlic-oil.jpg";
@@ -18,9 +18,9 @@ const ProductsSection = () => {
     {
       icon: Beaker,
       title: "Essential Spice Oils",
-      description: "Pure essential oils extracted using advanced distillation and CO2 extraction methods",
+      description: "Pure essential oils extracted using advanced steam distillation methods",
       image: garlicOil,
-      features: ["Steam Distilled", "CO2 Extracted", "Therapeutic Grade", "Batch Tested"],
+      features: ["Steam Distilled", "Therapeutic Grade", "Batch Tested", "High Purity"],
       color: "from-primary to-primary-muted"
     },
     {
@@ -30,6 +30,14 @@ const ProductsSection = () => {
       image: naturalColors,
       features: ["Food Grade", "Light Stable", "pH Resistant", "Clean Label"],
       color: "from-accent to-accent-muted"
+    },
+    {
+      icon: Utensils,
+      title: "Seasonings",
+      description: "Custom seasoning blends crafted for consistent flavor, aroma, and application performance",
+      image: productsShowcase,
+      features: ["Custom Blends", "Consistent Flavor", "Application Specific", "Quality Assured"],
+      color: "from-primary to-accent"
     }
   ];
 
@@ -73,7 +81,7 @@ const ProductsSection = () => {
         </div>
 
         {/* Products Grid */}
-        <div className="grid lg:grid-cols-3 gap-8 mb-20">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
           {products.map((product, index) => (
             <div
               key={product.title}

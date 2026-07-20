@@ -11,7 +11,7 @@ const AboutSection = () => {
     {
       icon: Award,
       title: "ISO Certified Quality",
-      description: "ISO 22000, HACCP, FDA approved facilities ensuring highest quality standards"
+      description: "ISO 22000 and HACCP certified facilities operating to GMP standards for consistent quality"
     },
     {
       icon: Microscope,

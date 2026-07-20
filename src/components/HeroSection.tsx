@@ -21,7 +21,7 @@ const HeroSection = () => {
           {/* Badge */}
           <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
             <Award className="w-5 h-5" />
-            <span className="text-sm font-medium">ISO Certified | FDA Approved</span>
+            <span className="text-sm font-medium">ISO 22000 & HACCP Certified | GMP Standards</span>
           </div>
 
           {/* Main Headline */}
