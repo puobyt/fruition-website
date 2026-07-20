@@ -22,10 +22,8 @@ const Footer = () => {
   const certifications = [
     "ISO 22000",
     "HACCP",
-    "FDA Approved",
     "FSSAI Licensed",
-    "GMP Certified",
-    "Organic Certified"
+    "GMP Standards Maintained"
   ];
 
   return (
