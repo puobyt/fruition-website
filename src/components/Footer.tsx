@@ -22,10 +22,8 @@ const Footer = () => {
   const certifications = [
     "ISO 22000",
     "HACCP",
-    "FDA Approved",
     "FSSAI Licensed",
-    "GMP Certified",
-    "Organic Certified"
+    "GMP Standards Maintained"
   ];
 
   return (
@@ -54,15 +52,17 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4 text-accent" />
-                <span className="text-sm">+91 (80) 2845-6789</span>
+                <span className="text-sm">Boby: +91 9847300189</span>
+                <span className="text-sm">Dilip: +91 9895010487</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-accent" />
-                <span className="text-sm">info@fruitionextracts.com</span>
+                <span className="text-sm">boby@fruition.in.net</span>
+                <span className="text-sm">dilip@fruition.in.net</span>
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin className="w-4 h-4 text-accent mt-0.5" />
-                <span className="text-sm">Plot 45, Industrial Area<br />Bangalore, Karnataka 560058, India</span>
+                <span className="text-sm">PLOT NO. C13, C14, SIPCOT INDUSTRIAL AREA, <br />OLLAIPATTI VILLAGE, TALUK, Uthangarai, Tamil Nadu 635304</span>
               </div>
             </div>
           </div>

@@ -134,13 +134,13 @@ const ContactSection = () => {
     {
       icon: MapPin,
       title: "Address",
-      details: ["Plot 45, Industrial Area", "Bangalore, Karnataka 560058, India"],
+      details: [" PLOT NO. C13, C14, SIPCOT INDUSTRIAL AREA, OLLAIPATTI VILLAGE, TALUK, Uthangarai, Tamil Nadu 635304"],
       color: "from-accent to-accent-muted"
     },
     {
       icon: Clock,
       title: "Business Hours",
-      details: ["Mon - Fri: 9:00 AM - 6:00 PM", "Sat: 9:00 AM - 2:00 PM"],
+      details: ["Mon - Sat: 9:00 AM - 6:00 PM"],
       color: "from-primary to-accent"
     }
   ];
